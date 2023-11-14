@@ -1,0 +1,73 @@
+# ping-devops-values.yaml
+global:
+  ingress:
+    enabled: true
+    addReleaseNameToHost: subdomain
+    defaultDomain: ping-devops.com
+    defaultTlsSecret:
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      kubernetes.io/ingress.class: "nginx-public"
+
+pingaccess-admin:
+  enabled: false
+
+pingaccess-engine:
+  enabled: false
+
+pingauthorize:
+  enabled: false
+
+pingdataconsole:
+  enabled: true
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: baseline/pingdataconsole
+
+pingdirectory:
+  enabled: true
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: baseline/pingdirectory
+
+pingfederate-admin:
+  enabled: true
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: baseline/pingfederate
+    PF_LOG_LEVEL: DEBUG
+    IMAGE_VERSION: pingfederate:11.2.3-edge
+
+pingfederate-engine:
+  enabled: true
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: baseline/pingfederate
+    PF_LOG_LEVEL: DEBUG
+    IMAGE_VERSION: pingfederate:11.2.3-edge
+
+pingcentral:
+  enabled: true
+  image:
+    repository: pingidentity
+    repositoryFqn:
+    name: pingcentral
+    tag: "1.11.0-alpine_3.18.2-al11-edge"
+    pullPolicy: IfNotPresent
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: baseline/pingcentral/dev-unsecure
+    PING_CENTRAL_LOG_LEVEL: DEBUG
+    PINGCENTRAL_EXPRESSIONS_ENABLED: "true"
+    PING_CENTRAL_BLIND_TRUST: "true"
+  workload:
+    type: StatefulSet
+    statefulSet:
+      persistentvolume:
+        volumes:
+          out-dir:
+            mountPath: /opt/out
+            persistentVolumeClaim:
+              resources:
+                requests:
+                  storage: 4Gi
