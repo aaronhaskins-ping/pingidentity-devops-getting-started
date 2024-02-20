@@ -39,38 +39,15 @@ pingfederate-admin:
     SERVER_PROFILE_URL_REDACT: "false"
     PING_IDENTITY_DEVOPS_KEY_REDACT: "false"
     PF_RUN_PF_HTTPS_SECONDARY_PORT: "true"
+    PF_ENGINE_SECONDARY_PORT: "9032"
     IMAGE_VERSION: "pingfederate:11.3.4-edge"
 
 pingfederate-engine:
   enabled: true
   envs:
-    SERVER_PROFILE_URL: "https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git"
-    SERVER_PROFILE_PATH: "baseline/pingfederate"
+    SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: baseline/pingfederate
+    PF_RUN_PF_HTTPS_SECONDARY_PORT: "true"
+    PF_ENGINE_SECONDARY_PORT: "9032"
     #PF_LOG_LEVEL: DEBUG
     IMAGE_VERSION: "pingfederate:11.3.4-edge"
-
-pingcentral:
-  enabled: true
-  image:
-    repository: "pingidentity"
-    repositoryFqn:
-    name: "pingcentral"
-    tag: "2.0.1-edge"
-    pullPolicy: "IfNotPresent"
-  envs:
-    SERVER_PROFILE_URL: "https://github.com/pingidentity/pingidentity-server-profiles.git"
-    SERVER_PROFILE_PATH: "baseline/pingcentral/dev-unsecure"
-    PING_CENTRAL_LOG_LEVEL: "DEBUG"
-    PINGCENTRAL_EXPRESSIONS_ENABLED: "true"
-    PING_CENTRAL_BLIND_TRUST: "true"
-  workload:
-    type: StatefulSet
-    statefulSet:
-      persistentvolume:
-        volumes:
-          out-dir:
-            mountPath: /opt/out
-            persistentVolumeClaim:
-              resources:
-                requests:
-                  storage: 4Gi
