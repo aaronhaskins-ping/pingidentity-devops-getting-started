@@ -33,15 +33,18 @@ pingdirectory:
 pingfederate-admin:
   enabled: true
   envs:
-    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
     SERVER_PROFILE_PATH: baseline/pingfederate
     PF_LOG_LEVEL: DEBUG
+    SERVER_PROFILE_URL_REDACT: false
+    PING_IDENTITY_DEVOPS_KEY_REDACT: false
+    PF_RUN_PF_HTTPS_SECONDARY_PORT: true
     IMAGE_VERSION: pingfederate:11.2.3-edge
 
 pingfederate-engine:
   enabled: true
   envs:
-    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
     SERVER_PROFILE_PATH: baseline/pingfederate
     PF_LOG_LEVEL: DEBUG
     IMAGE_VERSION: pingfederate:11.2.3-edge
