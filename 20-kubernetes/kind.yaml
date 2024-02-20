@@ -3,7 +3,7 @@ apiVersion: kind.x-k8s.io/v1alpha4
 name: ping
 nodes:
 - role: control-plane
-  image: kindest/node:v1.27.1@sha256:b7d12ed662b873bd8510879c1846e87c7e676a79fefc93e17b2a52989d3ff42b
+  image: kindest/node:v1.29.1@sha256:a0cc28af37cf39b019e2b448c54d1a3f789de32536cb5a5db61a49623e527144
   kubeadmConfigPatches:
   - |
     kind: InitConfiguration

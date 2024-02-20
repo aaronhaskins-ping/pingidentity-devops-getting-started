@@ -1,19 +1,22 @@
 ---
-title: DevOps Docker Builds, Version 2401 (Jan 29 2024)
+title: DevOps Docker Builds, Version 2312 (Dec 29 2023)
 ---
 
-# Version 2401 Release Notes
+# Version 2312 Release Notes
 
 !!! note "Product release notes"
 For information about product changes, refer to the release notes that can be found on each
 product's [download page](https://www.pingidentity.com/en/resources/downloads.html).
 
-## DevOps Docker Builds, Version 2401 (Jan 29 2024)
+## DevOps Docker Builds, Version 2312 (Dec 29 2023)
 
 ### New Product Releases
 
-- PingCentral 2.0.0 → 2.0.1
-- PingData products 9.3.0.3 → 9.3.0.4
+- PingFederate 11.3.3 → 11.3.4
+- PingAccess 8.0.0 and EOL 7.2.x
+- PingCentral 2.0.0 and EOL 1.12.x
+- PingDelegator 5.0.0 and EOL 4.8.x
+- PingData products 10.0.0.0 and EOL 9.2.0.x
     - PingDirectory ([Dockerhub](https://hub.docker.com/r/pingidentity/pingdirectory))
     - PingDirectory Proxy ([Dockerhub](https://hub.docker.com/r/pingidentity/pingdirectoryproxy))
     - PingDataSync ([Dockerhub](https://hub.docker.com/r/pingidentity/pingdatasync))
@@ -22,22 +25,14 @@ product's [download page](https://www.pingidentity.com/en/resources/downloads.ht
 
 ### Enhancements
 
-- Apache Tomcat 9.0.84 → 9.0.85
-- Apache JMeter 5.6.2 → 5.6.3
-- Redhat UBI9-minimal 9.1 → 9.3-1552
-- Liberica JDK11 11.0.21+10 → 11.0.22+12
-- Liberica JDK17 17.0.9+11 → 17.0.10+13
-- Alpine 3.19.0 → 3.19.1
-
-### Features
-
-- (PDI-1358) Add support for environment variables in utility sidecar in helm charts
-- (PDI-1367) Add global annotation support for PVC definitions
-- (PDI-1461) Add support for secondary port to PF image
+- Apache Tomcat 9.0.83 → 9.0.84
+- Alpine 3.18.4 → 3.19.0
 
 ### Documentation
 
-- (PDI-1432) Initial documentation for the PingFederate Terraform provider on https://terraform.pingidentity.com/
+- (PDI-1211) Added video demonstration of PingCentral upgrade process in containers
+- (PDI-1359) Added FAQ on supported OS shims and JDK version in images
+- (PDI-1361) Updated PingCentral upgrade instructions to latest release
 
 ### Supported Product Releases
 

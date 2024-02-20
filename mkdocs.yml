@@ -2,7 +2,7 @@ site_name: Ping Identity DevOps
 repo_name: pingidentity/pingidentity-devops-getting-started
 repo_url: https://github.com/pingidentity/pingidentity-devops-getting-started
 site_url: https://devops.pingidentity.com/
-copyright: © Copyright 2023 Ping Identity
+copyright: © Copyright 2024 Ping Identity
 google_analytics: ["UA-156953351-1", "devops.pingidentity.com"]
 extra_css:
         - mkdocs/overrides/stylesheets/extra.css
@@ -168,6 +168,9 @@ nav:
         - Release Notes:
                   - Current Release: "release-notes/currentRelease.md"
                   - All Releases:
+                            - Version 2401: "release-notes/relnotes-2401.md"
+                            - Version 2312: "release-notes/relnotes-2312.md"
+                            - Version 2311: "release-notes/relnotes-2311.md"
                             - Version 2310: "release-notes/relnotes-2310.md"
                             - Version 2309: "release-notes/relnotes-2309.md"
                             - Version 2308.1: "release-notes/relnotes-2308-1.md"

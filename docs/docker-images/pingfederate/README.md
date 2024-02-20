@@ -114,6 +114,7 @@ this image.
 | PF_LOG_LEVEL  | INFO  | General log level -- provide custom log4j2.xml in profile for more detailed control valid values are OFF, ERROR, WARN, INFO, DEBUG NOTE: PF_LOG_LEVEL only applies to PF versions before 11.2.0  |
 | PF_ADMIN_PORT  | 9999  | Defines the port on which the PingFederate administrative console and API runs. PF_RUN_PF_ADMIN_HTTPS_PORT will override this for PingFederate 11.3 and later.  |
 | PF_ENGINE_PORT  | 9031  | Defines the port on which PingFederate listens for encrypted HTTPS (SSL/TLS) traffic. PF_RUN_PF_HTTPS_PORT will override this for PingFederate 11.3 and later.  |
+| PF_ENGINE_SECONDARY_PORT  | -1  | Defines a secondary HTTPS port that can be used for mutual SSL/TLS (client X.509 certificate) authentication for both end users and protocol requests. PF_RUN_PF_HTTPS_SECONDARY_PORT (default 9032) will override this value. The default value of -1 disables the port in the product.  |
 | PF_ENGINE_DEBUG  | false  | Flag to turn on PingFederate Engine debugging Used in run.sh  |
 | PF_ADMIN_DEBUG  | false  | Flag to turn on PingFederate Admin debugging Used in run.sh  |
 | PF_DEBUG_PORT  | 9030  | Defines the port on which PingFederate opens up a java debugging port. Used in run.sh  |
@@ -125,6 +126,7 @@ this image.
 | HSM_MODE  | OFF  | Hardware Security Module Mode in run.properties Options include OFF, AWSCLOUDHSM, NCIPHER, LUNA, BCFIPS. PF_RUN_PF_HSM_MODE will override this for PingFederate 11.3 and later.  |
 | PF_BC_FIPS_APPROVED_ONLY  | false  | Defines a variable that allows instantiating non-FIPS crypto/random  |
 | PF_HSM_HYBRID  | false  | Hardware Security Module Hybrid Mode   When PF is in Hybrid mode, certs/keys can be created either on the local trust store or on the HSM.   This can used as a migration strategy towards an HSM setup. PF_RUN_PF_HSM_HYBRID will override this for PingFederate 11.3 and later.  |
+| PF_LDAP_TYPE  | PingDirectory  | This is the type of the LDAP directory server. This property is needed by PingFederate to determine how to handle different implementations between the available LDAP directory server types. Valid options include: ActiveDirectory, SunDirectoryServer, OracleUnifiedDirectory, PingDirectory, and Generic.  |
 | PF_LDAP_USERNAME  |   | This is the username for an account within the LDAP Directory Server that can be used to perform user lookups for authentication and other user level search operations.  Set if PF_CONSOLE_AUTHENTICATION or PF_ADMIN_API_AUTHENTICATION=LDAP PF_LDAP_LDAP_USERNAME will override this for PingFederate 11.3 and later.  |
 | PF_LDAP_PASSWORD  |   | This is the password for the Username specified above. This property should be obfuscated using the 'obfuscate.sh' utility. Set if PF_CONSOLE_AUTHENTICATION or PF_ADMIN_API_AUTHENTICATION=LDAP PF_LDAP_LDAP_PASSWORD will override this for PingFederate 11.3 and later.  |
 | CLUSTER_BIND_ADDRESS  | NON_LOOPBACK  | IP address for cluster communication.  Set to NON_LOOPBACK to allow the system to choose an available non-loopback IP address. PF_RUN_PF_CLUSTER_BIND_ADDRESS will override this for PingFederate 11.3 and later.  |
@@ -187,4 +189,4 @@ Please go [here](https://github.com/pingidentity/pingidentity-devops-getting-sta
 ---
 This document is auto-generated from _[pingfederate/Dockerfile](https://github.com/pingidentity/pingidentity-docker-builds/blob/master/pingfederate/Dockerfile)_
 
-Copyright © 2023 Ping Identity Corporation. All rights reserved.
+Copyright © 2024 Ping Identity Corporation. All rights reserved.

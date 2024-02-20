@@ -14,8 +14,10 @@ instances.
 > This image inherits, and can use, Environment Variables from [pingidentity/pingbase](https://devops.pingidentity.com/docker-images/pingbase/)
 - `pingidentity/pingdatacommon` - Common Ping files (i.e. hook scripts)\
 
+
 ## Environment Variables
-The following environment `ENV` variables can be used with
+In addition to environment variables inherited from **[pingidentity/pingbase](https://devops.pingidentity.com/docker-images/pingbase/)**,
+the following environment `ENV` variables can be used with
 this image.
 
 | ENV Variable  | Default     | Description
@@ -133,4 +135,4 @@ Please go [here](https://github.com/pingidentity/pingidentity-devops-getting-sta
 ---
 This document is auto-generated from _[pingdirectoryproxy/Dockerfile](https://github.com/pingidentity/pingidentity-docker-builds/blob/master/pingdirectoryproxy/Dockerfile)_
 
-Copyright © 2023 Ping Identity Corporation. All rights reserved.
+Copyright © 2024 Ping Identity Corporation. All rights reserved.
