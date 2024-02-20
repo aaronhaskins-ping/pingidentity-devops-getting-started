@@ -2,3 +2,4 @@
 .idea
 .vscode
 *.log
+11-docker-compose/00-standalone/pingfederate/pingfederate-out*
