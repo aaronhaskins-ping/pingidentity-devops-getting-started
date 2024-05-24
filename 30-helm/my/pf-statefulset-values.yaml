@@ -2,7 +2,7 @@
 global:
   ingress:
     enabled: true
-    addReleaseNameToHost: subdomain
+    addReleaseNameToHost: prepend
     defaultDomain: ping-devops.com
     defaultTlsSecret:
     annotations:
@@ -35,8 +35,9 @@ pingfederate-admin:
   envs:
     SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles
     SERVER_PROFILE_PATH: baseline/pingfederate
-    SERVER_PROFILE_BRANCH: statefulset-test
-    SERVER_PROFILE_UPDATE: "true"
+    SERVER_PROFILE_URL_REDACT: "false"
+    #SERVER_PROFILE_BRANCH: statefulset-test
+    #SERVER_PROFILE_UPDATE: "true"
     PF_LOG_LEVEL: DEBUG
     IMAGE_VERSION: 11.3.1-alpine_3.18.3-al11-latest
   workload:
@@ -47,8 +48,9 @@ pingfederate-engine:
   envs:
     SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles
     SERVER_PROFILE_PATH: baseline/pingfederate
-    SERVER_PROFILE_BRANCH: statefulset-test
-    SERVER_PROFILE_UPDATE: "true"
+    SERVER_PROFILE_URL_REDACT: "false"
+    #SERVER_PROFILE_BRANCH: statefulset-test
+    #SERVER_PROFILE_UPDATE: "true"
     PF_LOG_LEVEL: DEBUG
     IMAGE_VERSION: 11.3.1-alpine_3.18.3-al11-latest
 
