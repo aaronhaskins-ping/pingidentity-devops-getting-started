@@ -49,7 +49,6 @@ this image.
 | UNSAFE_CONTINUE_ON_ERROR  |   | If this is set to true, then the container will provide a hard warning and continue.  |
 | LICENSE_DIR  | ${SERVER_ROOT_DIR}  | License directory  |
 | PD_LICENSE_DIR  | ${STAGING_DIR}/pd.profile/server-root/pre-setup  | PD License directory. Separating from above LICENSE_DIR to differentiate for different products  |
-| STARTUP_COMMAND  |   | The command that the entrypoint will execute in the foreground to instantiate the container  |
 | STARTUP_FOREGROUND_OPTS  |   | The command-line options to provide to the the startup command when the container starts with the server in the foreground. This is the normal start flow for the container  |
 | STARTUP_BACKGROUND_OPTS  |   | The command-line options to provide to the the startup command when the container starts with the server in the background. This is the debug start flow for the container  |
 | PING_IDENTITY_DEVOPS_KEY_REDACT  | true  |  |
@@ -93,7 +92,6 @@ this image.
 | PA_ADMIN_PRIVATE_HOSTNAME  | pingaccess-admin  | PA (PingAccess) admin private hostname  |
 | ROOT_USER_DN  | cn=${ROOT_USER}  | DN of the server root user  |
 | ENV  | ${BASE}/.profile  |  |
-| MOTD_URL  | https://raw.githubusercontent.com/pingidentity/pingidentity-devops-getting-started/master/motd/motd.json  | Instructs the image to pull the MOTD json from the following URL. If this MOTD_URL variable is empty, then no motd will be downloaded. The format of this MOTD file must match the example provided in the url: https://raw.githubusercontent.com/pingidentity/pingidentity-devops-getting-started/master/motd/motd.json  |
 | PS1  | \${PING_PRODUCT}:\h:\w\n>   | Default shell prompt (i.e. productName:hostname:workingDir)  |
 | PATH  | ${JAVA_HOME}/bin:${BASE}:${SERVER_ROOT_DIR}/bin:${PATH}  | PATH used by the container  |
 | SHIM  | ${SHIM}  |  |
@@ -108,10 +106,9 @@ this image.
 | LICENSE_VERSION  | ${LICENSE_VERSION}  | Version used when retrieving license from License Server  |
 | STARTUP_COMMAND  | ${SERVER_ROOT_DIR}/bin/run.sh  | The command that the entrypoint will execute in the foreground to instantiate the container  |
 | PING_IDENTITY_PASSWORD  | 2FederateM0re  | Specify a password for administrator user for interaction with admin API  |
-| TAIL_LOG_FILES  | ${SERVER_ROOT_DIR}/log/server.log  | Files tailed once container has started  |
+| TAIL_LOG_FILES  | ${SERVER_ROOT_DIR}/log/server.log ${SERVER_ROOT_DIR}/log/init.log  | Files tailed once container has started  |
 | PF_LOG_SIZE_MAX  | 10000 KB  | Defines the log file size max for ALL appenders  |
 | PF_LOG_NUMBER  | 2  | Defines the maximum of log files to retain upon rotation  |
-| PF_LOG_LEVEL  | INFO  | General log level -- provide custom log4j2.xml in profile for more detailed control valid values are OFF, ERROR, WARN, INFO, DEBUG NOTE: PF_LOG_LEVEL only applies to PF versions before 11.2.0  |
 | PF_ADMIN_PORT  | 9999  | Defines the port on which the PingFederate administrative console and API runs. PF_RUN_PF_ADMIN_HTTPS_PORT will override this for PingFederate 11.3 and later.  |
 | PF_ENGINE_PORT  | 9031  | Defines the port on which PingFederate listens for encrypted HTTPS (SSL/TLS) traffic. PF_RUN_PF_HTTPS_PORT will override this for PingFederate 11.3 and later.  |
 | PF_ENGINE_SECONDARY_PORT  | -1  | Defines a secondary HTTPS port that can be used for mutual SSL/TLS (client X.509 certificate) authentication for both end users and protocol requests. PF_RUN_PF_SECONDARY_HTTPS_PORT (default 9032) will override this value. The default value of -1 disables the port in the product.  |
@@ -146,6 +143,7 @@ this image.
 | BULK_CONFIG_FILE  | data.json  |  |
 | ADMIN_WAITFOR_TIMEOUT  | 300  | wait-for timeout for 80-post-start.sh hook script How long to wait for the PF Admin console to be available  |
 | CREATE_INITIAL_ADMIN_USER  | false  | Set to true to create the initial admin user after PingFederate starts up. The initial admin user will only be created on the first startup of the server after the license is accepted.  |
+| ENABLE_AUTOMATIC_HEAP_DUMP  | true  | Set to true to add the following Java flags and enable memory dumps -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$PF_HOME_ESC/log"  |
 
 ## Ports Exposed
 
@@ -190,4 +188,4 @@ Please go [here](https://github.com/pingidentity/pingidentity-devops-getting-sta
 ---
 This document is auto-generated from _[pingfederate/Dockerfile](https://github.com/pingidentity/pingidentity-docker-builds/blob/master/pingfederate/Dockerfile)_
 
-Copyright © 2024 Ping Identity Corporation. All rights reserved.
+Copyright © 2026 Ping Identity Corporation

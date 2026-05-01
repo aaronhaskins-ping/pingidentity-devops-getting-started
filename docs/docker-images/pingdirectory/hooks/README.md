@@ -7,6 +7,7 @@ List of available hooks:
 * [20-restart-sequence.sh](20-restart-sequence.sh.md)
 * [80-post-start.sh](80-post-start.sh.md)
 * [90-shutdown-sequence.sh](90-shutdown-sequence.sh.md)
+* [LICENSE](LICENSE.md)
 * [pingdirectory.lib.sh](pingdirectory.lib.sh.md)
 
 These hooks will replace hooks defined by parent images (i.e. pingcommon/pingdatacommon)
@@ -14,4 +15,4 @@ These hooks will replace hooks defined by parent images (i.e. pingcommon/pingdat
 ---
 This document is auto-generated from _[pingdirectory/opt/staging/hooks](https://github.com/pingidentity/pingidentity-docker-builds/blob/master/pingdirectory/opt/staging/hooks)_
 
-Copyright © 2024 Ping Identity Corporation. All rights reserved.
+Copyright © 2026 Ping Identity Corporation

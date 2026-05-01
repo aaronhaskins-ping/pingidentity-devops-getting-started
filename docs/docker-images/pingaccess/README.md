@@ -50,7 +50,6 @@ this image.
 | UNSAFE_CONTINUE_ON_ERROR  |   | If this is set to true, then the container will provide a hard warning and continue.  |
 | LICENSE_DIR  | ${SERVER_ROOT_DIR}  | License directory  |
 | PD_LICENSE_DIR  | ${STAGING_DIR}/pd.profile/server-root/pre-setup  | PD License directory. Separating from above LICENSE_DIR to differentiate for different products  |
-| STARTUP_COMMAND  |   | The command that the entrypoint will execute in the foreground to instantiate the container  |
 | STARTUP_FOREGROUND_OPTS  |   | The command-line options to provide to the the startup command when the container starts with the server in the foreground. This is the normal start flow for the container  |
 | STARTUP_BACKGROUND_OPTS  |   | The command-line options to provide to the the startup command when the container starts with the server in the background. This is the debug start flow for the container  |
 | PING_IDENTITY_DEVOPS_KEY_REDACT  | true  |  |
@@ -94,7 +93,6 @@ this image.
 | PA_ADMIN_PRIVATE_HOSTNAME  | pingaccess-admin  | PA (PingAccess) admin private hostname  |
 | ROOT_USER_DN  | cn=${ROOT_USER}  | DN of the server root user  |
 | ENV  | ${BASE}/.profile  |  |
-| MOTD_URL  | https://raw.githubusercontent.com/pingidentity/pingidentity-devops-getting-started/master/motd/motd.json  | Instructs the image to pull the MOTD json from the following URL. If this MOTD_URL variable is empty, then no motd will be downloaded. The format of this MOTD file must match the example provided in the url: https://raw.githubusercontent.com/pingidentity/pingidentity-devops-getting-started/master/motd/motd.json  |
 | PS1  | \${PING_PRODUCT}:\h:\w\n>   | Default shell prompt (i.e. productName:hostname:workingDir)  |
 | PATH  | ${JAVA_HOME}/bin:${BASE}:${SERVER_ROOT_DIR}/bin:${PATH}  | PATH used by the container  |
 | SHIM  | ${SHIM}  |  |
@@ -168,4 +166,4 @@ Please go [here](https://github.com/pingidentity/pingidentity-devops-getting-sta
 ---
 This document is auto-generated from _[pingaccess/Dockerfile](https://github.com/pingidentity/pingidentity-docker-builds/blob/master/pingaccess/Dockerfile)_
 
-Copyright © 2024 Ping Identity Corporation. All rights reserved.
+Copyright © 2026 Ping Identity Corporation
