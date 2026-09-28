@@ -1,0 +1,86 @@
+# Deploy PingDirectory and PingFederate using the Secrets Store CSI Driver
+# with HashiCorp Vault as the provider.
+#
+# Secrets are delivered as *.env files mounted at /run/vault-secrets.
+# Setting SECRETS_DIR to that path tells the Ping startup hooks to source
+# those files, injecting all KEY=VALUE pairs as environment variables.
+# No Kubernetes Secret objects are created.
+#
+# See the walkthrough in the ping-devops Helm chart docs for full setup steps,
+# including installing the CSI driver, deploying Vault, seeding secrets, and
+# configuring Kubernetes auth.
+#
+# Prerequisites:
+#   - Secrets Store CSI Driver installed in kube-system
+#   - Vault deployed in the vault namespace with the CSI provider enabled
+#   - Vault seeded with secrets at ping/pd-env and ping/pf-env (content key, KEY=VALUE format)
+#     and ping/pdpwd (individual keys including root-user-password)
+#   - Kubernetes auth configured with a ping-role bound to the ping-vault-auth ServiceAccount
+#   - Namespace and ServiceAccount created:
+#       kubectl create namespace ping
+#       kubectl create serviceaccount ping-vault-auth -n ping
+
+global:
+  rbac:
+    serviceAccountName: ping-vault-auth
+
+pingdirectory:
+  enabled: true
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: getting-started/pingdirectory
+    SECRETS_DIR: /run/vault-secrets
+    ROOT_USER_PASSWORD_FILE: "/run/vault-secrets/root-user-password"
+  secretProviderClass:
+    enabled: true
+    create: true
+    provider: vault
+    mountPath: /run/vault-secrets
+    parameters:
+      vaultAddress: http://vault.vault:8200
+      roleName: ping-role
+      objects: |
+        - objectName: "pingdirectory.env"
+          secretPath: "ping/data/pd-env"
+          secretKey: "content"
+        - objectName: "root-user-password"
+          secretPath: "ping/data/pdpwd"
+          secretKey: "root-user-password"
+
+pingfederate-admin:
+  enabled: true
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: getting-started/pingfederate
+    SECRETS_DIR: /run/vault-secrets
+  secretProviderClass:
+    enabled: true
+    create: true
+    provider: vault
+    mountPath: /run/vault-secrets
+    parameters:
+      vaultAddress: http://vault.vault:8200
+      roleName: ping-role
+      objects: |
+        - objectName: "pingfederate.env"
+          secretPath: "ping/data/pf-env"
+          secretKey: "content"
+
+pingfederate-engine:
+  enabled: true
+  envs:
+    SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: getting-started/pingfederate
+    SECRETS_DIR: /run/vault-secrets
+  secretProviderClass:
+    enabled: true
+    create: true
+    provider: vault
+    mountPath: /run/vault-secrets
+    parameters:
+      vaultAddress: http://vault.vault:8200
+      roleName: ping-role
+      objects: |
+        - objectName: "pingfederate.env"
+          secretPath: "ping/data/pf-env"
+          secretKey: "content"
