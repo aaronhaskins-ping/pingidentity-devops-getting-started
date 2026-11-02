@@ -1,0 +1,18 @@
+global:
+  container:  
+    probes:
+      livenessProbe:
+        exec: 
+          command:
+            - /opt/liveness.sh
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        timeoutSeconds: 10
+        successThreshold: 1
+        failureThreshold: 20
+
+pingfederate-admin:
+  enabled: true
+
+pingfederate-engine:
+  enabled: true

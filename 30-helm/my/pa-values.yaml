@@ -1,0 +1,53 @@
+# ping-devops-values.yaml
+global:
+  ingress:
+    enabled: true
+    #addReleaseNameToHost: "subdomain"
+    addReleaseNameToHost: "prepend"
+    defaultDomain: "ping-devops.com"
+    defaultTlsSecret:
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      kubernetes.io/ingress.class: "nginx-public"
+      apiVersion: networking.k8s.io/v1
+      #nginx.ingress.kubernetes.io/server-snippet: |
+      #  http2 off;
+
+pingaccess-admin:
+  enabled: true
+  envs:
+    PING_IDENTITY_PASSWORD: ""
+
+pingaccess-engine:
+  enabled: true
+
+pingauthorize:
+  enabled: false
+
+pingdataconsole:
+  enabled: false
+  envs:
+    SERVER_PROFILE_URL: "https://github.com/pingidentity/pingidentity-server-profiles.git"
+    SERVER_PROFILE_PATH: "baseline/pingdataconsole"
+
+pingdirectory:
+  enabled: false
+  envs:
+    SERVER_PROFILE_URL: "https://github.com/pingidentity/pingidentity-server-profiles.git"
+    SERVER_PROFILE_PATH: "baseline/pingdirectory"
+
+pingfederate-admin:
+  enabled: false
+  envs:
+    SERVER_PROFILE_URL: "https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git"
+    SERVER_PROFILE_PATH: "baseline/pingfederate"
+    SERVER_PROFILE_URL_REDACT: "false"
+    PING_IDENTITY_DEVOPS_KEY_REDACT: "false"
+    #IMAGE_VERSION: "11.2.7-edge"
+
+pingfederate-engine:
+  enabled: false
+  envs:
+    SERVER_PROFILE_URL: "https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git"
+    SERVER_PROFILE_PATH: "baseline/pingfederate"
+    #IMAGE_VERSION: "11.2.7-edge"
