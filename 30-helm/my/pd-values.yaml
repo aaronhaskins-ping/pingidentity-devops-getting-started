@@ -2,7 +2,8 @@
 global:
   ingress:
     enabled: true
-    addReleaseNameToHost: "subdomain"
+    #addReleaseNameToHost: "subdomain"
+    addReleaseNameToHost: "prepend"
     defaultDomain: "ping-devops.com"
     defaultTlsSecret:
     annotations:
@@ -23,29 +24,27 @@ pingdataconsole:
   envs:
     SERVER_PROFILE_URL: "https://github.com/pingidentity/pingidentity-server-profiles.git"
     SERVER_PROFILE_PATH: "baseline/pingdataconsole"
+    IMAGE_VERSION: "2408.1-10.0.0.3"
 
 pingdirectory:
   enabled: true
   envs:
     SERVER_PROFILE_URL: "https://github.com/pingidentity/pingidentity-server-profiles.git"
     SERVER_PROFILE_PATH: "baseline/pingdirectory"
+    IMAGE_VERSION: "2408.1-10.0.0.3"
 
 pingfederate-admin:
-  enabled: true
+  enabled: false
   envs:
     SERVER_PROFILE_URL: "https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git"
     SERVER_PROFILE_PATH: "baseline/pingfederate"
-    #PF_LOG_LEVEL: DEBUG
     SERVER_PROFILE_URL_REDACT: "false"
     PING_IDENTITY_DEVOPS_KEY_REDACT: "false"
-    PF_RUN_PF_SECONDARY_HTTPS_PORT: "9032"
-    IMAGE_VERSION: "pingfederate:11.3.4-edge"
+    #IMAGE_VERSION: "11.2.7-edge"
 
 pingfederate-engine:
-  enabled: true
+  enabled: false
   envs:
-    SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
-    SERVER_PROFILE_PATH: baseline/pingfederate    
-    #PF_LOG_LEVEL: DEBUG
-    IMAGE_VERSION: "pingfederate:11.3.4-edge"
-    PF_RUN_PF_SECONDARY_HTTPS_PORT: "9032"
+    SERVER_PROFILE_URL: "https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git"
+    SERVER_PROFILE_PATH: "baseline/pingfederate"
+    #IMAGE_VERSION: "11.2.7-edge"

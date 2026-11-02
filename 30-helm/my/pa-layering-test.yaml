@@ -1,0 +1,77 @@
+global:
+  envs:
+    PING_IDENTITY_ACCEPT_EULA: "YES"
+
+#############################################################
+# pingaccess-admin values
+#############################################################
+pingaccess-admin:
+  enabled: true
+  image:
+    tag: 2409
+  #secretVolumes:
+  #  pingaccess-license:
+  #    items:
+  #      pingaccess.lic: /opt/in/instance/conf/pingaccess.lic
+  envs:
+    # plugin
+    SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: access-plug-in # not sure if order of branch and path matter, makes sense for path to first
+    SERVER_PROFILE_BRANCH: dev
+    SERVER_PROFILE_PARENT: BASE
+    
+    # base layer
+    SERVER_PROFILE_BASE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
+    SERVER_PROFILE_BASE_PATH: getting-started/pingaccess
+    SERVER_PROFILE_BASE_BRANCH: dev # does customer need to define branch for base config or do dev/test/prod all use same base?
+
+
+    SERVER_PROFILE_URL_REDACT: "false"
+    SERVER_PROFILE_UPDATE: "true"
+    PING_IDENTITY_PASSWORD: 2FederateM0re
+    PA_ADMIN_PASSWORD_INITIAL: 2Access
+
+#############################################################
+# pingaccess-engine values
+#############################################################
+pingaccess-engine:
+  enabled: true
+  image:
+    tag: 2409
+  #secretVolumes:
+  #  pingaccess-license:
+  #    items:
+  #      pingaccess.lic: /opt/in/instance/conf/pingaccess.lic
+  envs:
+    # plugin
+    SERVER_PROFILE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
+    SERVER_PROFILE_PATH: access-plug-in # not sure if order of branch and path matter, makes sense for path to first
+    SERVER_PROFILE_BRANCH: dev
+    SERVER_PROFILE_PARENT: BASE
+    
+    # base layer
+    SERVER_PROFILE_BASE_URL: https://github.com/aaronhaskins-ping/pingidentity-server-profiles.git
+    SERVER_PROFILE_BASE_PATH: getting-started/pingaccess
+    SERVER_PROFILE_BASE_BRANCH: dev # does customer need to define branch for base config or do dev/test/prod all use same base?
+
+    SERVER_PROFILE_URL_REDACT: "false"
+    SERVER_PROFILE_UPDATE: "true"
+#  clustering:
+#    autoscaling:
+#      enabled: true
+#      minReplicas: 3
+#      maxReplicas: 3
+#      targetCPUUtilizationPercentage: 75
+persistentvolume:
+  enabled: true
+  volumes:
+    out-dir:
+      mountPath: /opt/out
+      persistentVolumeClaim:
+        name: out-dir-ping-access-pingaccess-admin-0      
+        accessModes:
+        - ReadWriteOnce
+        storageClassName:
+        resources:
+          requests:
+            storage: 25Gi
